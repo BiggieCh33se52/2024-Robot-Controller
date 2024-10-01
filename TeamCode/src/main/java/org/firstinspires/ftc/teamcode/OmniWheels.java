@@ -74,6 +74,7 @@ public class OmniWheels extends LinearOpMode {
     private DcMotor rightFrontDrive = null;
     private DcMotor rightBackDrive = null;
 
+    float raise = 
     @Override
     public void runOpMode() {
 
@@ -98,6 +99,15 @@ public class OmniWheels extends LinearOpMode {
         leftBackDrive.setDirection(DcMotor.Direction.REVERSE);
         rightFrontDrive.setDirection(DcMotor.Direction.FORWARD);
         rightBackDrive.setDirection(DcMotor.Direction.FORWARD);
+        private DcMotor myMotor=null;
+        myMotor=hardwareMap.get(DcMotor.class,"motor_name");
+        myMotor.setDirection(DcMotor.Direction.REVERSE);
+        import com.qualcomm.robotcore.hardware.Servo;
+        private Servo handServo=null;
+        handServo=hardwareMap.get(Servo.class,"third_servo");
+        static final double INCREMENT=0.01
+        private DCMotor armjoint1 = null;
+        private DCMotor armjoint2 = nul````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````
 
         // Wait for the game to start (driver presses START)
         telemetry.addData("High Five", "We Roboted!!!");
@@ -134,6 +144,7 @@ public class OmniWheels extends LinearOpMode {
                 leftBackPower   /= max;
                 rightBackPower  /= max;
             }
+            
 
             // This is test code:
             //
