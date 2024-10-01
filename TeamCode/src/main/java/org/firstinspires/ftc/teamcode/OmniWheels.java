@@ -34,6 +34,8 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
+import com.qualcomm.robotcore.hardware.servo;
+import 
 
 /*
  * This file contains an example of a Linear "OpMode".
@@ -84,6 +86,17 @@ public class OmniWheels extends LinearOpMode {
         leftBackDrive  = hardwareMap.get(DcMotor.class, "left_back_drive");
         rightFrontDrive = hardwareMap.get(DcMotor.class, "right_front_drive");
         rightBackDrive = hardwareMap.get(DcMotor.class, "right_back_drive");
+
+        allMotors.add(leftFrontDrive);
+        allMotors.add(rightFrontDrive);
+        allMotors.add(leftBackDrive);
+        allMotors.add(rightBackDrive);
+
+        thisServo = hardwareMap.get(Servo.class, "servo_Name");
+        
+        allServos.add(thisServo);
+
+          
 
         // ########################################################################################
         // !!!            IMPORTANT Drive Information. Test your motor directions.            !!!!!
@@ -170,9 +183,15 @@ public class OmniWheels extends LinearOpMode {
             rightBackDrive.setPower(rightBackPower);
 
             // Show the elapsed game time and wheel power.
-            telemetry.addData("Status", "Run Time: " + runtime.toString());
-            telemetry.addData("Front left/Right", "%4.2f, %4.2f", leftFrontPower, rightFrontPower);
-            telemetry.addData("Back  left/Right", "%4.2f, %4.2f", leftBackPower, rightBackPower);
+            // telemetry.addData("Status", "Run Time: " + runtime.toString());
+            // telemetry.addData("Front left/Right", "%4.2f, %4.2f", leftFrontPower, rightFrontPower);
+            // telemetry.addData("Back  left/Right", "%4.2f, %4.2f", leftBackPower, rightBackPower);
+            for (DcMotor thisMotor in allMotors){
+              telemetry.addData("MotorSpeed", thisMotor.getSpeed());
+             }
+            for (Servo thisServo in allServos) {
+                telemetry.addData("ServoPosition", thisServo.getPosition());
+            }
             telemetry.update();
         }
     }}
