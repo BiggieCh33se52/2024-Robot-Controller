@@ -135,10 +135,10 @@ public class OmniWheels extends LinearOpMode {
             double lateral =  gamepad1.right_stick_x; // strafe left/right
             double yaw     =  gamepad1.left_stick_x;// rotate left/right
 
-            double handClose = gamepad2.right_trigger;
-            double handOpen = gamepad2.left_trigger;
-            double elbow = gamepad2.right_stick_y;
-            double shoulder = gamepad2.left_stick_y;
+            boolean handClose = gamepad2.right_trigger > 0.5;
+            boolean handOpen = gamepad2.left_trigger > 0.5;
+            double elbowVal = gamepad2.right_stick_y;
+            double shoulderVal = gamepad2.left_stick_y;
             
 
             // Combine the joystick requests for each axis-motion to determine each wheel's power.
@@ -184,6 +184,28 @@ public class OmniWheels extends LinearOpMode {
             rightFrontDrive.setPower(rightFrontPower);
             leftBackDrive.setPower(leftBackPower);
             rightBackDrive.setPower(rightBackPower);
+
+            if(handOpen) {
+                hand.setPosition(1);
+            } else if(handClose) {
+                hand.setPosition(0);
+            }
+
+            if(elbowVal) < -0.5 {
+                elbow.setPosition(0)
+            }
+
+            if(elbowVal) > 0.5 {
+                elbow.setPosition(1)
+            }
+
+            if(shoulderVal) < -0.5 {
+                shoulder.setPosition(0)
+            }
+
+            if(shoulderVal) > 0.5 {
+                shoulder.setPosition(1)
+            }
 
             // Show the elapsed game time and wheel power.
             // telemetry.addData("Status", "Run Time: " + runtime.toString());
