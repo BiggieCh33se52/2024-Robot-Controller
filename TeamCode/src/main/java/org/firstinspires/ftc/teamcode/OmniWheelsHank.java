@@ -30,12 +30,12 @@
 package org.firstinspires.ftc.robotcontroller.external.samples;
 
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
+import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
-import com.qualcomm.robotcore.hardware.servo;
-
+import java.util.List;
 /*
  * This file contains an example of a Linear "OpMode".
  * An OpMode is a 'program' that runs in either the autonomous or the teleop period of an FTC match.
@@ -66,7 +66,7 @@ import com.qualcomm.robotcore.hardware.servo;
 
 @TeleOp(name="OmniWheels 0.1", group="Linear OpMode")
 @Disabled
-public class OmniWheels extends LinearOpMode {
+public class OmniWheelsHank extends LinearOpMode {
 
     // Declare OpMode members for each of the 4 motors.
     private ElapsedTime runtime = new ElapsedTime();
@@ -78,9 +78,12 @@ public class OmniWheels extends LinearOpMode {
     private Servo shoulder = null;
     private Servo elbow = null;
     private Servo hand = null;
+    
+    private List<DcMotor> allMotors = null;
+    private List<Servo> allServos = null;
 
     @Override
-    public void runOpMode() }
+    public void runOpMode() {
 
         // Initialize the hardware variables. Note that the strings used here must correspond
         // to the names assigned during the robot configuration step on the DS or RC devices.
@@ -100,7 +103,9 @@ public class OmniWheels extends LinearOpMode {
 
         
         
-        allServos.add(thisServo);
+        allServos.add(shoulder);
+        allServos.add(elbow);
+        allServos.add(hand);
 
           
 
@@ -191,19 +196,19 @@ public class OmniWheels extends LinearOpMode {
                 hand.setPosition(0);
             }
 
-            if(elbowVal) < -0.5 {
+            if(elbowVal < -0.5){
                 elbow.setPosition(0);
             }
 
-            if(elbowVal) > 0.5 {
+            if(elbowVal > 0.5) {
                 elbow.setPosition(1);
             }
 
-            if(shoulderVal) < -0.5 {
+            if(shoulderVal < -0.5) {
                 shoulder.setPosition(0);
             }
 
-            if(shoulderVal) > 0.5 {
+            if(shoulderVal > 0.5) {
                 shoulder.setPosition(1);
             }
 
@@ -211,10 +216,10 @@ public class OmniWheels extends LinearOpMode {
             // telemetry.addData("Status", "Run Time: " + runtime.toString());
             // telemetry.addData("Front left/Right", "%4.2f, %4.2f", leftFrontPower, rightFrontPower);
             // telemetry.addData("Back  left/Right", "%4.2f, %4.2f", leftBackPower, rightBackPower);
-            for (DcMotor thisMotor in allMotors){
-              telemetry.addData("MotorSpeed", thisMotor.getSpeed());
+            for (DcMotor thisMotor : allMotors){
+              telemetry.addData("MotorSpeed", thisMotor.getPower());
              }
-            for (Servo thisServo in allServos) {
+            for (Servo thisServo : allServos) {
                 telemetry.addData("ServoPosition", thisServo.getPosition());
             }
             telemetry.update();
