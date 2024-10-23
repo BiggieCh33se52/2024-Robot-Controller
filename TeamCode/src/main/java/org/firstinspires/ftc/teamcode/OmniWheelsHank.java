@@ -192,19 +192,19 @@ public class OmniWheels extends LinearOpMode {
             }
 
             if(elbowVal) < -0.5 {
-                elbow.setPosition(0)
+                elbow.setPosition(0);
             }
 
             if(elbowVal) > 0.5 {
-                elbow.setPosition(1)
+                elbow.setPosition(1);
             }
 
             if(shoulderVal) < -0.5 {
-                shoulder.setPosition(0)
+                shoulder.setPosition(0);
             }
 
             if(shoulderVal) > 0.5 {
-                shoulder.setPosition(1)
+                shoulder.setPosition(1);
             }
 
             // Show the elapsed game time and wheel power.
